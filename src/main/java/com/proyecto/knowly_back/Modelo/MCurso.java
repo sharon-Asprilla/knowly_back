@@ -22,16 +22,20 @@ public class MCurso {
     @Column (nullable = false)
     Integer precio;
 
+    @Column (length = 30,nullable = false)
+    String duracion;
+
     //relaciones
 
     //constructores
 
 
-    public MCurso(String ideCurso, String nombreCurso, String descripcion, Integer precio) {
+    public MCurso(String ideCurso, String nombreCurso, String descripcion, Integer precio, String duracion) {
         this.ideCurso = ideCurso;
         this.nombreCurso = nombreCurso;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.duracion = duracion;
     }
 
     public MCurso() {
@@ -67,5 +71,13 @@ public class MCurso {
 
     public void setPrecio(Integer precio) {
         this.precio = precio;
+    }
+
+    public String getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(String duracion) {
+        this.duracion = duracion;
     }
 }
