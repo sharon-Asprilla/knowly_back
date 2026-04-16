@@ -6,55 +6,53 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name = "curso")
-public class MCurso {
+@Table(name = "cursos")
+public class MCursos {
 
     @Id
-    @Column(name = "idecurso",length = 15,nullable = false)
-    String ideCurso;
+    @Column(name = "idecursos", length = 15, nullable = false)
+    String ideCursos;
 
-    @Column (length = 80,nullable = false)
-    String nombreCurso;
+    @Column(length = 80, nullable = false)
+    String nombreCursos;
 
-    @Column (length = 250,nullable = false)
+    @Column(length = 250, nullable = false)
     String descripcion;
 
-    @Column (nullable = false)
+    @Column(nullable = false)
     Integer precio;
 
-    @Column (length = 30,nullable = false)
+    @Column(length = 30, nullable = false)
     String duracion;
 
-    //relaciones
+    // relaciones
 
-    //constructores
-
-
-    public MCurso(String ideCurso, String nombreCurso, String descripcion, Integer precio, String duracion) {
-        this.ideCurso = ideCurso;
-        this.nombreCurso = nombreCurso;
+    // constructores
+    public MCursos(String ideCursos, String nombreCursos, String descripcion, Integer precio, String duracion) {
+        this.ideCursos = ideCursos;
+        this.nombreCursos = nombreCursos;
         this.descripcion = descripcion;
         this.precio = precio;
         this.duracion = duracion;
     }
 
-    public MCurso() {
+    public MCursos() {
     }
 
-    public String getIdeCurso() {
-        return ideCurso;
+    public String getIdeCursos() {
+        return ideCursos;
     }
 
-    public void setIdeCurso(String ideCurso) {
-        this.ideCurso = ideCurso;
+    public void setIdeCursos(String ideCursos) {
+        this.ideCursos = ideCursos;
     }
 
-    public String getNombreCurso() {
-        return nombreCurso;
+    public String getNombreCursos() {
+        return nombreCursos;
     }
 
-    public void setNombreCurso(String nombreCurso) {
-        this.nombreCurso = nombreCurso;
+    public void setNombreCursos(String nombreCursos) {
+        this.nombreCursos = nombreCursos;
     }
 
     public String getDescripcion() {

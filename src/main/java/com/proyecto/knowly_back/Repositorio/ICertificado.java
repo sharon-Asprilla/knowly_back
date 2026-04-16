@@ -4,6 +4,10 @@ import com.proyecto.knowly_back.Modelo.MCertificado;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ICertificado extends JpaRepository<MCertificado,String> {
+
+
 }
