@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface IUsuario<integer> extends JpaRepository<MUsuario,String> {
+public interface IUsuario extends JpaRepository<MUsuario,String> {
     List<MUsuario> findByNombre(String Nombre);
 }
