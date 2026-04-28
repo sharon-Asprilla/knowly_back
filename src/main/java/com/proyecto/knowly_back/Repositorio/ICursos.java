@@ -1,16 +1,15 @@
 package com.proyecto.knowly_back.Repositorio;
 
-import com.proyecto.knowly_back.Modelo.MCursos;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
+import com.proyecto.knowly_back.Modelo.MCursos;
 
 @Repository
 public interface ICursos extends JpaRepository<MCursos,String> {
     List<MCursos> findByNombreCursos(String nombre);
     List<MCursos> findByDescripcion(String descripcion);
-    List<MCursos> findByDuracion(String nombre, String descripcion);
-
-
+    List<MCursos> findByDuracion(String duracion);
 }

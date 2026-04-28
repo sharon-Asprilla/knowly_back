@@ -1,8 +1,16 @@
 package com.proyecto.knowly_back.Modelo;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,7 +33,21 @@ public class MCursos {
     @Column(length = 30, nullable = false)
     String duracion;
 
-    // relaciones
+    // Relación: curso → profesor
+    @ManyToOne
+    @JoinColumn(name="ideusuario")
+    @JsonBackReference
+    private MUsuario mprofesor;
+
+    // Relación: curso → inscripciones
+    @OneToMany(mappedBy = "mCurso")   // coincide con atributo en MInscripciones
+    @JsonManagedReference
+    private List<MInscripciones> mInscripciones;
+
+    // Relación: curso → certificados
+    @OneToMany(mappedBy = "mCurso")   // coincide con atributo en MCertificado
+    @JsonManagedReference
+    private List<MCertificado> mCertificados;
 
     // constructores
     public MCursos(String ideCursos, String nombreCursos, String descripcion, Integer precio, String duracion) {
@@ -77,5 +99,29 @@ public class MCursos {
 
     public void setDuracion(String duracion) {
         this.duracion = duracion;
+    }
+
+    public MUsuario getMprofesor() {
+        return mprofesor;
+    }
+
+    public void setMprofesor(MUsuario mprofesor) {
+        this.mprofesor = mprofesor;
+    }
+
+    public List<MInscripciones> getMInscripciones() {
+        return mInscripciones;
+    }
+
+    public void setMInscripciones(List<MInscripciones> mInscripciones) {
+        this.mInscripciones = mInscripciones;
+    }
+
+    public List<MCertificado> getMCertificados() {
+        return mCertificados;
+    }
+
+    public void setMCertificados(List<MCertificado> mCertificados) {
+        this.mCertificados = mCertificados;
     }
 }

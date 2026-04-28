@@ -19,13 +19,19 @@ public class SUsuario {
 
     //adicion de registro de usuario
 
+    // adicionar registro de usuario con validación de rol
     public MUsuario addiccionarUsuario(MUsuario mUsuario) throws Exception {
         try {
+            if (!mUsuario.getRol().equals("PROFESOR") && !mUsuario.getRol().equals("ESTUDIANTE")) {
+                throw new Exception("Rol inválido. Debe ser PROFESOR o ESTUDIANTE");
+            }
             return iUsuario.save(mUsuario);
         } catch (Exception error) {
             throw new Exception(error.getMessage());
         }
     }
+
+
 
     // consulta general de usuario
     public List<MUsuario> consultaGeneralUsuario() throws Exception {
@@ -37,6 +43,17 @@ public class SUsuario {
         }
 
     }
+
+
+    public List<MUsuario> consultaPorRol(String rol) throws Exception {
+        try {
+            return iUsuario.findByRol(rol);
+        } catch (Exception error) {
+            throw new Exception(error.getMessage());
+        }
+    }
+
+
 
     public MUsuario consultaIndividualId(String ideUsuario) throws Exception {
         try {
@@ -62,24 +79,23 @@ public class SUsuario {
         }
     }
 
-    // modificar un registro de usuario
+    // modificar un registro de usuario incluyendo rol
     public MUsuario modificarUsuario(String ideUsuario, MUsuario mUsuario) throws Exception {
-
         try {
             Optional<MUsuario> registroEncontrado = iUsuario.findById(ideUsuario);
             if (registroEncontrado.isPresent()) {
                 MUsuario nuevoRegistro = registroEncontrado.get();
-                nuevoRegistro.setIdeUsuario(mUsuario.getIdeUsuario());
+                nuevoRegistro.setIdeusuario(mUsuario.getIdeusuario());
                 nuevoRegistro.setNombre(mUsuario.getNombre());
                 nuevoRegistro.setApellido(mUsuario.getApellido());
                 nuevoRegistro.setCorreo(mUsuario.getCorreo());
                 nuevoRegistro.setContrasenia(mUsuario.getContrasenia());
                 nuevoRegistro.setDocumento(mUsuario.getDocumento());
+                nuevoRegistro.setRol(mUsuario.getRol()); // aquí guarda el rol
 
                 return iUsuario.save(nuevoRegistro);
             } else {
-                throw new Exception("usuario no se puede modificar ya que el usuario no se encontro ");
-
+                throw new Exception("usuario no se puede modificar ya que no se encontró");
             }
         } catch (Exception error) {
             throw new Exception(error.getMessage());
@@ -109,7 +125,7 @@ public class SUsuario {
 
             if (registroEncontrado.isPresent()) {
                 MUsuario nuevoRegistro = registroEncontrado.get();
-                nuevoRegistro.setIdeUsuario(mUsuario.getIdeUsuario());
+                nuevoRegistro.setIdeusuario(mUsuario.getIdeusuario());
                 return iUsuario.save(nuevoRegistro);
             } else {
                 throw new Exception("no se puede anular usuario no encontrado ");

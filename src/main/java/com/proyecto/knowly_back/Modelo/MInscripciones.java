@@ -1,79 +1,72 @@
 package com.proyecto.knowly_back.Modelo;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import java.time.LocalDate;
+
 @Entity
 @Table(name = "inscripciones")
 public class MInscripciones {
 
+    @Id
+    @Column(length = 10, nullable = false)
+    private String ideinscripcion;
 
+    @Column(nullable = false)
+    private LocalDate fechainscripcion;
 
+    // Relación: inscripción → estudiante (usuario con rol ESTUDIANTE)
+    @ManyToOne
+    @JoinColumn(name = "ideusuario", nullable = false) // FK hacia usuario
+    @JsonBackReference
+    private MUsuario mUsuario;   // <-- coincide con mappedBy="mUsuario" en MUsuario
 
-        @Id
-        @Column(length = 10,nullable = false)
-        String ideInscripciones;
+    // Relación: inscripción → curso
+    @ManyToOne
+    @JoinColumn(name = "idecurso", nullable = false) // FK hacia curso
+    @JsonBackReference
+    private MCursos mCurso;      // <-- coincide con mappedBy="mCurso" en MCursos
 
-        @Column (length = 10,nullable = false)
-        String ideUsuario;
+    // Constructores
+    public MInscripciones() {
+    }
 
-        @Column (length = 10,nullable = false)
-        String ideCurso;
+    public MInscripciones(String ideinscripcion, LocalDate fechainscripcion, MUsuario mUsuario, MCursos mCurso) {
+        this.ideinscripcion = ideinscripcion;
+        this.fechainscripcion = fechainscripcion;
+        this.mUsuario = mUsuario;
+        this.mCurso = mCurso;
+    }
 
-        @Column(nullable = false)
-        LocalDate fechaInscripcion;
+    public String getIdeinscripcion() {
+        return ideinscripcion;
+    }
 
-        //relaciones
+    public void setIdeinscripcion(String ideinscripcion) {
+        this.ideinscripcion = ideinscripcion;
+    }
 
-        //constructores
-        public MInscripciones(String ideInscripciones, String ideUsuario, String ideCurso, LocalDate fechaInscripcion) {
-            this.ideInscripciones = ideInscripciones;
-            this.ideUsuario = ideUsuario;
-            this.ideCurso = ideCurso;
-            this.fechaInscripcion = fechaInscripcion;
-        }
+    public LocalDate getFechainscripcion() {
+        return fechainscripcion;
+    }
 
-        public MInscripciones() {
-        }
+    public void setFechainscripcion(LocalDate fechainscripcion) {
+        this.fechainscripcion = fechainscripcion;
+    }
 
-        //encapsulamiento
+    public MUsuario getmUsuario() {
+        return mUsuario;
+    }
 
+    public void setmUsuario(MUsuario mUsuario) {
+        this.mUsuario = mUsuario;
+    }
 
-        public String getIdeInscripciones() {
-            return ideInscripciones;
-        }
+    public MCursos getmCurso() {
+        return mCurso;
+    }
 
-        public void setIdeInscripcion(String ideInscripcion) {
-            this.ideInscripciones = ideInscripcion;
-        }
-
-        public String getIdeUsuario() {
-            return ideUsuario;
-        }
-
-        public void setIdeUsuario(String ideUsuario) {
-            this.ideUsuario = ideUsuario;
-        }
-
-        public String getIdeCurso() {
-            return ideCurso;
-        }
-
-        public void setIdeCurso(String ideCurso) {
-            this.ideCurso = ideCurso;
-        }
-
-        public LocalDate getFechaInscripcion() {
-            return fechaInscripcion;
-        }
-
-        public void setFechaInscripcion(LocalDate fechaInscripcion) {
-            this.fechaInscripcion = fechaInscripcion;
-        }
-
-
-
+    public void setmCurso(MCursos mCurso) {
+        this.mCurso = mCurso;
+    }
 }

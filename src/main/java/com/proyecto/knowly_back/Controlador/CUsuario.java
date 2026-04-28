@@ -13,7 +13,7 @@ public class CUsuario {
     @Autowired
     SUsuario sUsuario;
 
-    //adicio y registro de usuario
+    //adicion y registro de usuario
 
     @RequestMapping
     public ResponseEntity<?>addiccionarUsuario(@RequestBody MUsuario mUsuario) throws  Exception{
@@ -27,6 +27,23 @@ public class CUsuario {
                     .body(error.getMessage());
         }
     }
+
+
+    @GetMapping("/rol")
+    public ResponseEntity<?> consultaPorRol(@RequestParam String rol) throws Exception {
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.OK)
+                    .body(this.sUsuario.consultaPorRol(rol));
+        } catch (Exception error) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(error.getMessage());
+        }
+    }
+
+
+
     // consulta general
     @GetMapping
     public ResponseEntity<?> consultaGeneralUsuario () throws Exception{
@@ -108,9 +125,6 @@ public class CUsuario {
 
         }
     }
-
-
-
 
 
 
