@@ -40,17 +40,17 @@ public class MUsuario {
 
     // Relación: profesor → cursos
     @OneToMany(mappedBy = "mprofesor")
-    @JsonManagedReference
+    @JsonManagedReference //evita problemas de recursividad infinita al serializar las relaciones en JSON
     private List<MCursos> mcursos;
 
     // Relación: estudiante → inscripciones
-    @OneToMany(mappedBy = "mUsuario")   // <-- debe coincidir con el atributo en MInscripciones
-    @JsonManagedReference
+    @OneToMany(mappedBy = "mUsuario")   // debe coincidir con el atributo en MInscripciones
+    @JsonManagedReference (value = "usuario-inscripcion")
     private List<MInscripciones> minscripciones;
 
-    // Relación: usuario → certificados
-    @OneToMany(mappedBy = "mUsuario")   // <-- debe coincidir con el atributo en MCertificado
-    @JsonManagedReference
+    // Relación: estudiante → certificados
+    @OneToMany(mappedBy = "mUsuario")   // debe coincidir con el atributo en MCertificado
+    @JsonManagedReference (value = "usuario-certificado")
     private List<MCertificado> mCertificados;
     // constructor
 

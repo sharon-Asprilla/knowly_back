@@ -27,13 +27,13 @@ public class MCertificado {
     // Relación: certificado → usuario
     @ManyToOne
     @JoinColumn(name = "ideusuario", nullable = false) // FK hacia usuario
-    @JsonBackReference
+    @JsonBackReference (value = "usuario-certificado")
     private MUsuario mUsuario;
 
     // Relación: certificado → curso
     @ManyToOne
     @JoinColumn(name = "idecurso", nullable = false) // FK hacia curso
-    @JsonBackReference
+    @JsonBackReference (value = "curso-certificado")
     private MCursos mCurso;
 
     // Campo adicional (no es @Id, solo columna)

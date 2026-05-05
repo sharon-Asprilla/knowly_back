@@ -94,7 +94,7 @@ public class CUsuario {
         }
     }
 
-
+        //modificar el usuario si ya existe
     @PutMapping("/{ideUsuario}")
     public  ResponseEntity<?> modificarUsuario(@PathVariable String ideUsuario, @RequestBody MUsuario mUsuario) throws Exception{
         try{

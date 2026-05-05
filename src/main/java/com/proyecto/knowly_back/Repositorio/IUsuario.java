@@ -9,9 +9,9 @@ import java.util.Optional;
 
 @Repository
 public interface IUsuario extends JpaRepository<MUsuario,String> {
-    List<MUsuario> findByNombre(String Nombre);
+    List<MUsuario> findByNombre(String Nombre); // consulta tipo SELECT * FROM usuario WHERE nombre = ?
 
     // Buscar usuarios por rol
-    List<MUsuario> findByRol(String rol);
+    List<MUsuario> findByRol(String Rol);
 
 }

@@ -41,12 +41,12 @@ public class MCursos {
 
     // Relación: curso → inscripciones
     @OneToMany(mappedBy = "mCurso")   // coincide con atributo en MInscripciones
-    @JsonManagedReference
+    @JsonManagedReference (value = "curso-inscripcion")
     private List<MInscripciones> mInscripciones;
 
     // Relación: curso → certificados
     @OneToMany(mappedBy = "mCurso")   // coincide con atributo en MCertificado
-    @JsonManagedReference
+    @JsonManagedReference (value = "curso-certificado")
     private List<MCertificado> mCertificados;
 
     // constructores

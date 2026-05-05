@@ -18,13 +18,13 @@ public class MInscripciones {
     // Relación: inscripción → estudiante (usuario con rol ESTUDIANTE)
     @ManyToOne
     @JoinColumn(name = "ideusuario", nullable = false) // FK hacia usuario
-    @JsonBackReference
+    @JsonBackReference (value = "usuario-inscripcion")
     private MUsuario mUsuario;   // <-- coincide con mappedBy="mUsuario" en MUsuario
 
     // Relación: inscripción → curso
     @ManyToOne
     @JoinColumn(name = "idecurso", nullable = false) // FK hacia curso
-    @JsonBackReference
+    @JsonBackReference (value = "curso-inscripcion")
     private MCursos mCurso;      // <-- coincide con mappedBy="mCurso" en MCursos
 
     // Constructores
