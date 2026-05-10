@@ -36,7 +36,7 @@ public class MUsuario {
     String contrasenia;
 
 
-    // relaciones
+    //relaciones
 
     // Relación: profesor → cursos
     @OneToMany(mappedBy = "mprofesor")
@@ -52,10 +52,9 @@ public class MUsuario {
     @OneToMany(mappedBy = "mUsuario")   // debe coincidir con el atributo en MCertificado
     @JsonManagedReference (value = "usuario-certificado")
     private List<MCertificado> mCertificados;
+
     // constructor
-
-
-    public MUsuario(String ideusuario, String rol, String nombre, String apellido, String documento, String correo, String contrasenia, List<MCertificado> mCertificados) {
+    public MUsuario(String ideusuario, String rol, String nombre, String apellido, String documento, String correo, String contrasenia) {
         this.ideusuario = ideusuario;
         this.rol = rol;
         this.nombre = nombre;
@@ -63,11 +62,6 @@ public class MUsuario {
         this.documento = documento;
         this.correo = correo;
         this.contrasenia = contrasenia;
-        this.mCertificados = mCertificados;
-    }
-
-    public MUsuario(List<MCertificado> mCertificados) {
-        this.mCertificados = mCertificados;
     }
 
     public MUsuario() {
@@ -75,7 +69,6 @@ public class MUsuario {
     }
 
     //encapsulamiento
-
 
     public String getIdeusuario() {
         return ideusuario;
@@ -132,22 +125,4 @@ public class MUsuario {
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-
-    public List<MCursos> getMcursos() {
-        return mcursos;
-    }
-
-    public void setMcursos(List<MCursos> mcursos) {
-        this.mcursos = mcursos;
-    }
-
-    public List<MInscripciones> getMinscripciones() {
-        return minscripciones;
-    }
-
-    public void setMinscripciones(List<MInscripciones> minscripciones) {
-        this.minscripciones = minscripciones;
-    }
-
-
 }
