@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "*") // manejo de los cros en por los localhost en las peticiones del front
 @RequestMapping("/usuario")
 public class CUsuario {
     @Autowired
