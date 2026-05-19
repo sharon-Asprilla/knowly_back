@@ -1,5 +1,5 @@
 # Usa una imagen base con Java 17 (compatible con Render)
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jdk
 
 # Copia el archivo JAR generado por Maven
 COPY target/knowly_back-0.0.1-SNAPSHOT.jar app.jar
